@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сезімдерім</title>
+    <style>
+        body {
+            background-color: #f0e6f6;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff66b2;
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        #message, #finalMessage {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 20px;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+        .photos {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .photos img {
+            width: 40%;
+            max-width: 200px;
+            margin: 10px;
+            border-radius: 10px;
+            display: none;
+            transform: scale(0);
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        button {
+            background-color: #ff66b2;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button:hover {
+            background-color: #ff3385;
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            p, #message, #finalMessage {
+                font-size: 1em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 12px 25px;
+            }
+            .photos img {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Сәлем, сүйіктім! 🌹</h1>
+    <p>Саған арналған кішкентай бір нәрсе бар 😊</p>
+    <button onclick="showMessage()">Мына кнопканы мыж</button>
+    <div id="message">Сен менің өмірімдегі ең тамаша адамсың! 🌞</div>
+    <div class="photos" id="photos">
+        <img src="pupsik.jpg">
+        <img src="pupsik1.jpg">
+        <img src="pupsik2.jpg">
+        <img src="pupsik3.jpg">
+        <img src="pupsik4.jpg">
+        <img src="pupsik5.jpg">
+        <img src="pupsik6.jpg">
+        <img src="pupsik7.jpg">
+    </div>
+    <div id="finalMessage">Көріп тұрғаныңдай, біздің бақытты сәттеріміз әлі аяқталмады. Әлі талай қызықты күндерді бастан кешіріп, мәңгі бірге боламыз. Сен тез сауығып кетесің, жаным💖!</div>
+
+    <script>
+        function showMessage() {
+            var message = document.getElementById("message");
+            var photos = document.getElementById("photos");
+            var images = photos.getElementsByTagName("img");
+            var finalMessage = document.getElementById("finalMessage");
+            message.style.display = "block";
+            message.style.opacity = 0;
+            photos.style.opacity = 1;
+            setTimeout(function() {
+                message.style.opacity = 1;
+            }, 100);
+
+            // Фотоларды кезекпен шығару
+            let delay = 500; // Әрбір суреттің шығу уақыты (миллисекунд)
+            for (let i = 0; i < images.length; i++) {
+                setTimeout(function() {
+                    images[i].style.display = "block";
+                    images[i].style.transform = "scale(1)";
+                    images[i].style.opacity = 1;
+                }, delay * (i + 1));
+            }
+
+            // Соңғы суреттен кейін мәтінді көрсету
+            setTimeout(function() {
+                finalMessage.style.display = "block";
+                finalMessage.style.opacity = 1;
+            }, delay * (images.length + 1));
+        }
+    </script>
+</body>
+</html>
